@@ -1,0 +1,81 @@
+#include<stack>
+class SpecialStack {
+    // Define the data members.
+
+    /*----------------- Public Functions of SpecialStack -----------------*/
+    stack<int>store;
+    int mini;
+    public:
+        
+    void push(int data) {
+        if(store.empty()){
+            store.push(data);
+            mini = data;
+        }
+
+    else{
+        if(data<mini){
+            int value = 2*data - mini;
+            store.push(value);
+            mini = data;
+        }
+        else{
+            store.push(data);
+        }
+    }
+        
+    }
+
+    int pop() {
+        // Implement the pop() function.
+        if(store.empty()){
+            return -1;
+        }
+
+        int curr = store.top();
+
+        store.pop();
+
+        if(curr>mini){
+            return curr;
+        }
+
+        else{
+            int premini = mini;
+            int value = 2*mini - curr;
+            mini = value;
+            return premini;
+        }
+    }
+
+    int top() {
+        if(store.empty()){
+            return -1;
+        }
+
+        int curr = store.top();
+        if(curr <mini){
+            return  mini;}
+        else{
+            return curr;
+        }
+    }
+
+    bool isEmpty() {
+        if(store.empty())
+        return true;
+
+        else{
+             return false;
+        }
+    }
+
+    int getMin() {
+
+        if(store.empty())
+        return -1;
+
+        else
+         return mini;
+    }  
+};
